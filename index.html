@@ -60,11 +60,11 @@ function imprimirDental(){
     //funcion forEach que recorre cada objeto de arreglo dental
     dental.forEach(function(dental){
         //se crea nuevo arreglo que divide cada objeto de dental en un arreglo propio
-        let paciente = [dental.hora, dental.especialista, dental.paciente, dental.rut, dental.prevision]
+        let paciente = [dental.hora, dental.especialista, dental.paciente, dental.rut, dental.prevision];
         //se crea constante en que se divide arreglo paciente en strings y se unen con -
         const pacienteSeparado = paciente.join(' - ');
         //Imprime string pacienteSeparado y se añaden etiquetas p
-        document.write(`<p> ${pacienteSeparado} </p>`)
+        document.write(`<p> ${pacienteSeparado} </p>`);
     })
 
 }
@@ -73,20 +73,53 @@ function imprimirDental(){
 function imprimirPacientes(){
     document.write('<p><strong>Listado de pacientes:</strong></p>');
 
+    //concatena los arreglos de pacientes de traumatologia, dental y radiologia 
     let listaPacientes = radiologia.concat(traumatologia, dental)
-    //funcion forEach que recorre cada objeto de arreglo dental
+
     listaPacientes.forEach(function(listaPacientes){
-        //se crea nuevo arreglo que divide cada objeto de dental en un arreglo propio
         let pacientes = listaPacientes.paciente
-        //Imprime string pacienteSeparado y se añaden etiquetas p
         document.write(`<p> ${pacientes} </p>`)
     })
 
 }
+//Desafío 5 filtro pacientes de isapre en dental
+function filtroIsapreDental(){
+    document.write('<p><strong>Pacientes de Dental que estan con isapre:</strong></p>');
+
+    //filtro con condicional que devuelve solo pacientes que estan en isapre
+    let filtro = dental.filter(function(pacientes){
+        return pacientes.prevision === 'ISAPRE'
+  })
+  //recorre cada elemento de arreglo filtro e imprime cada nombre de paciente con su previsión
+    filtro.forEach(function(filtro){
+        let pacienteIsapre = [filtro.paciente, filtro.prevision];
+        const pacientePrevisionSeparado = pacienteIsapre.join(' - ');
+        document.write(`<p>${pacientePrevisionSeparado}</p>`)
+  })
+  
+}
+//Desafío 6 filtro pacientes de fonasa en traumatología
+function filtroFonasaTrauma(){
+    document.write('<p><strong>Pacientes de Traumatología que estan con Fonasa:</strong></p>');
+
+    //filtro con condicional que devuelve solo pacientes que estan en fonasa
+  let filtro = traumatologia.filter(function(pacientes){
+        return pacientes.prevision === 'FONASA'
+  })
+  
+  filtro.forEach(function(filtro){
+        let pacienteIsapre = [filtro.paciente, filtro.prevision];
+        const pacientePrevisionSeparado = pacienteIsapre.join(' - ');
+        document.write(`<p>${pacientePrevisionSeparado}</p>`)
+  })
+}
+
 //funciones
-imprimirPacientes()
+imprimirPacientes();
 primerUltimo();
-imprimirDental()
+imprimirDental();
+filtroIsapreDental();
+filtroFonasaTrauma();
 
 document.write(`<p>Cantidad de atenciones para Radiología: ${radiologia.length}</p>`);
 document.write(`<p>Cantidad de atenciones para Traumatología: ${traumatologia.length}</p>`);
