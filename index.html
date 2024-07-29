@@ -83,37 +83,32 @@ function imprimirPacientes(){
 
 }
 
-//Desafío 5 filtro pacientes de isapre en dental
+//funcion de filtros generico para desafios 5 y 6
+function filtro(espec, prev){
+    //filtro con condicional que devuelve solo pacientes que estan en la prevision inscrita 
+    let filtro = espec.filter(function(pacientes){
+        return pacientes.prevision === prev
+    })
+    //recorre cada elemento de arreglo filtro e imprime cada nombre de paciente con su previsión
+    filtro.forEach(function(filtro){
+        let pacientePrevision = [filtro.paciente, filtro.prevision];
+        const pacientePrevisionSeparado = pacientePrevision.join(' - ');
+        document.write(`<p>${pacientePrevisionSeparado}</p>`)
+    })
+}
+    
+//Desafío 5 filtro pacientes de isapre en dental 
 function filtroIsapreDental(){
     document.write('<p><strong>Pacientes de Dental que estan con isapre:</strong></p>');
 
-    //filtro con condicional que devuelve solo pacientes que estan en isapre
-    let filtro = dental.filter(function(pacientes){
-        return pacientes.prevision === 'ISAPRE'
-  })
-  //recorre cada elemento de arreglo filtro e imprime cada nombre de paciente con su previsión
-    filtro.forEach(function(filtro){
-        let pacienteIsapre = [filtro.paciente, filtro.prevision];
-        const pacientePrevisionSeparado = pacienteIsapre.join(' - ');
-        document.write(`<p>${pacientePrevisionSeparado}</p>`)
-  })
-  
+    //ejecuta funcion filtro
+   filtro(dental, 'ISAPRE');
 }
 
 //Desafío 6 filtro pacientes de fonasa en traumatología
 function filtroFonasaTrauma(){
     document.write('<p><strong>Pacientes de Traumatología que estan con Fonasa:</strong></p>');
-
-    //filtro con condicional que devuelve solo pacientes que estan en fonasa
-  let filtro = traumatologia.filter(function(pacientes){
-        return pacientes.prevision === 'FONASA'
-  })
-  
-  filtro.forEach(function(filtro){
-        let pacienteIsapre = [filtro.paciente, filtro.prevision];
-        const pacientePrevisionSeparado = pacienteIsapre.join(' - ');
-        document.write(`<p>${pacientePrevisionSeparado}</p>`)
-  })
+    filtro(traumatologia, 'FONASA');
 }
 
 //funciones
